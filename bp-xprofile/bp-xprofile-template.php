@@ -573,12 +573,14 @@ function bp_the_profile_field_options( $args = '' ) {
 					if ( is_numeric( $date ) ) {
 						$day   = date( 'j', $date );
 						$month = date( 'F', $date );
+						$month_index = date( 'm', $date )-1;
 						$year  = date( 'Y', $date );
 
 					// If MySQL timestamp
 					} else {
 						$day   = mysql2date( 'j', $date );
 						$month = mysql2date( 'F', $date );
+						$month_index = mysql2date( 'm', $date )-1;
 						$year  = mysql2date( 'Y', $date );
 					}
 				}
@@ -620,7 +622,7 @@ function bp_the_profile_field_options( $args = '' ) {
 						$html .= '<option value=""' . selected( $month, '', false ) . '>------</option>';
 
 						for ( $i = 0; $i < 12; ++$i ) {
-							$html .= '<option value="' . $eng_months[$i] . '"' . selected( $month, $eng_months[$i], false ) . '>' . $months[$i] . '</option>';
+							$html .= '<option value="' . $eng_months[$i] . '"' . selected( $nmonth, $i, false ) . '>' . $months[$i] . '</option>';
 						}
 						break;
 
